@@ -342,7 +342,7 @@ def repl_parse(
     """fungsi parse yang digunakan pada repl"""
 
     indent = "    "  # Empat spasi untuk indentasi
-    block = ("class ", "def ", "match ")  # block tanpa identifier
+    block = ("class ", "def ")  # block tanpa identifier
     block_then = ("if ",)
     block_do = ("while ", "for ", "with ")
     ret_code = ""
