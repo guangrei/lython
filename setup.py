@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import Lython
-import sys
+from os import path
 
 
 try:
@@ -13,7 +13,7 @@ with open(path.join(this_directory, "README.md")) as f:
     long_description = f.read()
 
 setup(
-    name='programminglython" ',
+    name='programminglython',
     version=Lython.__version__,
     description="Lython programming language built on top of CPython",
     long_description=long_description,
