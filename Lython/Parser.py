@@ -120,6 +120,19 @@ def parse(code, filename="<str>"):
     block = ("class ", "def ")  # block tanpa identifier
     block_then = ("if ",)
     block_do = ("while ", "for ", "with ")
+    all_block = ("try:", "except:", "else:")
+    all_block_arg = (
+        "if ",
+        "elif ",
+        "except ",
+        "def ",
+        "async def ",
+        "with ",
+        "async with ",
+        "for ",
+        "while ",
+        "class ",
+    )
 
     lineno = 1
     block_open = []
@@ -288,6 +301,19 @@ def parse(code, filename="<str>"):
                     )
             # implementasi end keyword
             elif ignore_comments(stripped) == "end":
+                if len(new_lines):
+                    e_stripped = new_lines[-1].strip()
+                    if e_stripped.startswith(all_block_arg) or e_stripped in all_block:
+                        raise ParseError(
+                            error_msg.format(
+                                filename,
+                                lineno,
+                                stripped,
+                                " " * 2,
+                                "SyntaxError: Can't 'end' empty block",
+                            )
+                        )
+
                 if indent_level > 0:
                     indent_level -= 1
                     block_close.append(stripped)
@@ -347,6 +373,19 @@ def repl_parse(
     block_do = ("while ", "for ", "with ")
     ret_code = ""
     skip = True
+    all_block = ("try:", "except:", "else:")
+    all_block_arg = (
+        "if ",
+        "elif ",
+        "except ",
+        "def ",
+        "async def ",
+        "with ",
+        "async with ",
+        "for ",
+        "while ",
+        "class ",
+    )
 
     stripped = code.strip()
     # implementasi doc string double quote
@@ -514,6 +553,19 @@ def repl_parse(
                 )
         # implementasi end keyword
         elif ignore_comments(stripped) == "end":
+            if len(new_lines):
+                e_stripped = new_lines[-1].strip()
+                if e_stripped.startswith(all_block_arg) or e_stripped in all_block:
+                    raise ParseError(
+                        error_msg.format(
+                            filename,
+                            lineno,
+                            stripped,
+                            " " * 2,
+                            "SyntaxError: Can't 'end' empty block",
+                        )
+                    )
+
             if indent_level > 0:
                 skip = True
                 indent_level -= 1
