@@ -4,6 +4,7 @@ import traceback
 import code
 from Lython.Parser import repl_parse, parse, ignore_comments
 from Lython.util import require
+from var_dump import var_dump
 
 
 class LythonInteractiveShell(code.InteractiveConsole):
@@ -12,7 +13,7 @@ class LythonInteractiveShell(code.InteractiveConsole):
     def __init__(self, locals=None, filename="<console>", histfile=None):
         super().__init__(locals=locals, filename=filename)
         self.locals["require"] = require
-        self.prompt = ">>> "
+        self.locals["dump"] = var_dump
         self._new_lines = []
         self._block_open = []
         self._block_close = []
@@ -24,13 +25,11 @@ class LythonInteractiveShell(code.InteractiveConsole):
     def raw_input(self, prompt=None):
         """fungsi untuk menghandle input pada repl"""
         if self._indent_level != 0:
-            self.prompt = "... "
+            prompt = "... "
         else:
-            self.prompt = ">>> "
+            prompt = ">>> "
             self._lineno = 1
             self._indent_level = 0
-        if prompt is None:
-            prompt = self.prompt
         return input(prompt)
 
     def push(self, line):

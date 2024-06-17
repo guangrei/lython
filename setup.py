@@ -25,4 +25,5 @@ setup(
     scripts=["bin/lython"],
     license=Lython.__license__,
     platforms="any",
+    install_requires=["var_dump"]
 )

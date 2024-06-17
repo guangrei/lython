@@ -143,7 +143,3 @@ at last, add environment variable in your server
 
 
 tested on gcp and vercel.
-
-## Dev
-
-Lython is still in the early stages of development and your contributions are welcome.
