@@ -589,6 +589,7 @@ def repl_parse(
             indent_level += 1
         else:
             ret_code = indent * indent_level + stripped
+            new_lines.append(ret_code)
             skip = False
         lineno = lineno + 1
     if not skip:
