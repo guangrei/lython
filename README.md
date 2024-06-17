@@ -1,5 +1,7 @@
 [![status workflow test](https://github.com/guangrei/lython/actions/workflows/python-app.yml/badge.svg)](https://github.com/guangrei/lython/actions) 
 [![status workflow build](https://github.com/guangrei/lython/actions/workflows/release_to_pypi.yml/badge.svg)](https://github.com/guangrei/lython/actions)
+[![Downloads](https://static.pepy.tech/badge/programminglython)](https://pepy.tech/project/programminglython)
+[![Code style: black ]( https://img.shields.io/badge/code%20style-black-000000.svg )](https://github.com/psf/black)
 
 Python is a great programming language, but sometimes the indentation can be terrible for some people (especially people with visual impairments).
 
@@ -54,7 +56,10 @@ to install lython with `pip`, type
 ```
 pip install programminglython
 ```
-
+install from repository
+```
+pip install --upgrade https://github.com/guangrei/lython/archive/main.zip
+```
 available commands
 ```
 % lython -h
