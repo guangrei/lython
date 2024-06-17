@@ -478,12 +478,14 @@ def repl_parse(
         # implementasi match
         elif stripped.startswith("match "):
             new_lines.append(indent * indent_level + stripped + ":")
+            ret_code = indent * indent_level + stripped + ":"
             indent_level += 1
             block_open.append((stripped, lineno))
         # implementasi case
         elif stripped.startswith("case "):
             if stripped.endswith(" do"):
                 new_lines.append(indent * indent_level + stripped[:-3] + ":")
+                ret_code = indent * indent_level + stripped[:-3] + ":"
                 indent_level += 1
                 block_open.append((stripped, lineno))
             else:
