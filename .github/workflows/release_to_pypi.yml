@@ -21,7 +21,7 @@ jobs:
 
       - name: Build source and wheel distributions
         run: |
-          pip install --upgrade build twine
+          pip install --upgrade -r requirements-dev.txt
           python -m build
           twine check --strict dist/*
       - name: Publish distribution to PyPI

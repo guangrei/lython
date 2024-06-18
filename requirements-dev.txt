@@ -2,3 +2,4 @@ flake8
 twine
 black
 var_dump
+build
